@@ -3,7 +3,7 @@ import { CanvasCapture } from "@packages/r3f-gist/components/utility";
 import BasicMesh from '../components/BasicMesh'
 import { LevaWrapper } from "@packages/r3f-gist/components";
 import { Canvas } from "@react-three/fiber";
-import { AdaptiveDPRMonitor } from "@packages/r3f-gist/components/webgl";
+import { GaussianSplat } from "../components/GaussianSplat";
 
 export default function App() {
     return <>
@@ -21,11 +21,15 @@ export default function App() {
             dpr={[1, 2]}
             performance={{ min: 0.5, max: 1 }}
         >
+            <color attach="background" args={['#000000']} />
             <AdaptiveDpr pixelated />
+            
+            <GaussianSplat url="/splats/camo_jacket.ply" />
 
             <CameraControls makeDefault />
             <BasicMesh />
             <CanvasCapture />
+            <directionalLight position={[1, 1, 1]} intensity={1} />
         </Canvas>
     </>
 }
